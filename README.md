@@ -1,13 +1,22 @@
 # Private Lessons
 
+<h1>
+    <img src="preview/Private-Lessons.gif">
+</h1>
+
+### 📝Sobre
 Private Lessons é uma plataforma de gerenciamento de aulas particulares, onde é possível cadastrar alunos e professores, tendo controle sobre quais matérias estão sendo ministradas por cada um dos profissionais de ensino, e a quantidade de carga horaria de cada aluno.
 
-### Pré Requisitos
+----
 
-- Git (https://git-scm.com/)
-- Node (https://nodejs.org)
+### 🚩Pré Requisitos
 
-### Instalação
+- [Git](https://git-scm.com/)
+- [Node](https://nodejs.org)
+
+----
+
+### 📂Instalação
 
 ```bash
 # Clone este repositório
@@ -23,7 +32,9 @@ $ npm install
 $ npm start
 ```
 
-## Tecnologias
+---
+
+## 🚀Tecnologias
 
 - NodeJs
 - Express
@@ -33,11 +44,15 @@ $ npm start
 - CSS
 - JS
 
-## Autor
+----
+
+## 👨🏾‍💻Autor
 * **Jacó Apolinário** - [Linkedin](https://www.linkedin.com/in/jacoapolinario/)
 
 
-## License
+----
+
+## 🧾License
 
 Esse projeto está sob a licença MIT. Veja o arquivo [LICENSE](/LICENSE) para mais detalhes.
 
