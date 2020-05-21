@@ -27,8 +27,8 @@
     <div>
         <input 
         type="date" 
-        name="birth"
-        value="{{ teacher.birth }}"
+        name="birth_date"
+        value="{{ teacher.birth_date }}"
         >
     </div>
 </div>
@@ -36,21 +36,21 @@
 <div class="item">
     <div>Grau de Escolaridade</div>
     <div>
-        <select name="grau">
+        <select name="education_level">
             <option 
-                value="1" {% if teacher.grau == 1 %}
+                value="1" {% if teacher.education_level == 1 %}
                     selected
                 {% endif %}>Ensino Médio Completo
             </option>
 
             <option 
-                value="2" {% if teacher.grau == 2 %}
+                value="2" {% if teacher.education_level == 2 %}
                     selected
                 {% endif %}>Ensino Superior Completo
             </option>
 
             <option 
-                value="3" {% if teacher.grau == 3 %}
+                value="3" {% if teacher.education_level == 3 %}
                     selected
                  {% endif %}>Mestrado e Doutorado
             </option>
@@ -64,17 +64,18 @@
         <span>
             <input 
             type="radio" 
-            name="type" 
+            name="class_type" 
             value="Presencial"
-            {% if teacher.type == "Presencial" %}
+            {% if teacher.class_type == "Presencial" %}
                 checked
             {% endif %}>Presencial
         </span>
         <span>
             <input 
             type="radio" 
-            name="type" 
-            value="Distancia" {% if teacher.type == "Distancia" %}
+            name="class_type" 
+            value="Distancia" 
+            {% if teacher.class_type == "Distancia" %}
                 checked
             {% endif %}>À distância
         </span>
@@ -86,9 +87,9 @@
     <div>
         <input 
         type="text" 
-        name="services"
+        name="subjects_taught"
         placeholder="Separe as matérias por vírgula"
-        value="{{ teacher.services }}"
+        value="{{ teacher.subjects_taught }}"
         >
     </div>
 </div>
