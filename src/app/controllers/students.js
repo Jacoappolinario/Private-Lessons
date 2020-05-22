@@ -1,13 +1,11 @@
-const { age, date, graduation, grade } = require('../../lib/utils')
 const Student = require('../models/Student')
+const { age, graduation, date, grade } = require('../../lib/utils')
 
-module.exports =  {
+module.exports = {
     index(req, res) {
-        
         Student.all(function(students) {
-            return res.render("students/index", { students })
+            return res.render("students/index", { students }) 
         })
-
     },
     create(req, res) {
         Student.teachersSelectOptions(function(options) {
@@ -23,20 +21,18 @@ module.exports =  {
             }
         }
 
-       Student.create(req.body, function(student) {
-           return res.redirect(`/students/${student.id}`)
-       })
-
+        Student.create(req.body, function(student) {
+            return res.redirect(`/students/${student.id}`)
+        })
     },
     show(req, res) {
-       Student.find(req.params.id, function(student) {
-           if (!student) return res.send("Student not found")
+        Student.find(req.params.id, function(student) {
 
             student.birth = date(student.birth).birthDay
             student.school_year = grade(student.school_year)
 
             return res.render("students/show", { student })
-       })
+        })
     },
     edit(req, res) {
         Student.find(req.params.id, function(student) {
@@ -63,9 +59,8 @@ module.exports =  {
         })
     },
     delete(req, res) {
-       Student.delete(req.body.id, function() {
-           return res.redirect(`/students`)
-       })
+        Student.delete(req.body.id, function() {
+            return res.redirect(`/students`)
+        })
     }
 }
-

@@ -1,26 +1,25 @@
 const Teacher = require('../models/Teacher')
-const { age, date, graduation } = require('../../lib/utils')
+const { age, graduation, date } = require('../../lib/utils')
 
-module.exports =  {
+module.exports = {
     index(req, res) {
-        const { filter } = req.query
+        const { filter } =  req.query
 
         if (filter) {
             Teacher.findBy(filter, function(teachers) {
-                return res.render("teachers/index", { teachers, filter })
+                return res.render("teachers/index", { teachers, filter }) 
             })
         } else {
             Teacher.all(function(teachers) {
-                return res.render("teachers/index", { teachers })
+                return res.render("teachers/index", { teachers }) 
             })
         }
-
-
     },
     create(req, res) {
         return res.render("teachers/create")
     },
     post(req, res) {
+        
         const keys = Object.keys(req.body)
 
         for (key of keys) {
@@ -29,33 +28,28 @@ module.exports =  {
             }
         }
 
-       Teacher.create(req.body, function(teacher) {
-           return res.redirect(`/teachers/${teacher.id}`)
-       })
-
+        Teacher.create(req.body, function(teacher) {
+            return res.redirect(`/teachers/${teacher.id}`)
+        })
     },
     show(req, res) {
-       Teacher.find(req.params.id, function(teacher) {
-           if (!teacher) return res.send("Teacher not found")
+        Teacher.find(req.params.id, function(teacher) {
 
             teacher.age = age(teacher.birth_date)
-            teacher.subjects_taught = teacher.subjects_taught.split(",")
             teacher.education_level = graduation(teacher.education_level)
+            teacher.subjects_taught = teacher.subjects_taught.split(",")
             teacher.created_at = date(teacher.created_at).format
 
             return res.render("teachers/show", { teacher })
-       })
+        })
     },
     edit(req, res) {
         Teacher.find(req.params.id, function(teacher) {
-            if (!teacher) return res.send("Teacher not found")
- 
-             teacher.birth_date = date(teacher.birth_date).iso
-             teacher.subjects_taught = teacher.subjects_taught.split(",")
-             teacher.education_level = graduation(teacher.education_level)
-             teacher.created_at = date(teacher.created_at).format
- 
-             return res.render("teachers/edit", { teacher })
+
+            teacher.birth_date = date(teacher.birth_date).iso
+            teacher.subjects_taught = teacher.subjects_taught.split(",")
+
+            return res.render("teachers/edit", { teacher })
         })
     },
     put(req, res) {
@@ -72,8 +66,9 @@ module.exports =  {
         })
     },
     delete(req, res) {
-       Teacher.delete(req.body.id, function() {
-           return res.redirect(`/teachers`)
-       })
+        Teacher.delete(req.body.id, function() {
+            return res.redirect(`/teachers`)
+        })
     }
 }
+

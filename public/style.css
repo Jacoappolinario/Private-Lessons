@@ -8,7 +8,7 @@
 * {
     margin: 0;
     padding: 0;
-    border: none;
+    border: 0;
 }
 
 body {
@@ -226,7 +226,6 @@ tbody tr:last-child td {
 tbody tr td:first-child {
     display: grid;
     grid-template-columns: 64px 1fr;
-    align-items: center;
 }
 
 tbody tr td:first-child span {
@@ -251,7 +250,7 @@ tbody tr td:last-child a,
 }
 
 .table-container > a {
-    margin-bottom: 16px;
+    margin-bottom: 32px;
     display: inline-block;
 }
 
@@ -259,6 +258,8 @@ tbody tr td:last-child a,
 td:last-child {
     text-align: center;
 }
+
+/*=== Filters ===*/
 
 .table-container .header {
     display: grid;
@@ -276,15 +277,14 @@ td:last-child {
     display: grid;
     grid-template-columns: 1fr 120px;
     align-items: center;
-    grid-gap: 8px
+    grid-gap: 8px;
 }
-
 .table-container .header form input {
     border: 1px solid #eee;
     padding: 4px 8px;
     box-sizing: border-box;
 }
 
-.table-container .header form button {
+.table-container .header button {
     margin: 0;
 }

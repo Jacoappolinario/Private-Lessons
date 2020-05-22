@@ -1,5 +1,5 @@
 const db = require('../../config/db')
-const { age, date, graduation } = require('../../lib/utils')
+const { date } = require('../../lib/utils')
 
 module.exports = {
     all(callback) {
@@ -23,38 +23,34 @@ module.exports = {
                 education_level,
                 class_type,
                 subjects_taught,
-                created_at
+                created_at  
             ) VALUES ($1, $2, $3, $4, $5, $6, $7)
-            RETURNING id 
+            RETURNING id
         `
 
         const values = [
             data.avatar_url,
             data.name,
-            date(data.birth_date).iso,
+            data.birth_date,
             data.education_level,
             data.class_type,
             data.subjects_taught,
-            date(Date.now()).iso
-
+            date(Date.now()).iso  
         ]
 
-        db.query(query, values, function(err, results) {
+        db.query(query, values, function(err , results) {
             if (err) throw `Database Error! ${err}`
-           
+
             callback(results.rows[0])
         })
     },
     find(id, callback) {
-        db.query(`
-            SELECT * 
-            FROM teachers 
-            WHERE id = $1`, [id], function(err, results) {
+        db.query(`SELECT * FROM teachers WHERE id = $1`, [id], function(err, results) {
             if (err) throw `Database Error! ${err}`
 
             callback(results.rows[0])
         })
-    },
+    }, 
     findBy(filter, callback) {
         db.query(`
                 SELECT teachers.*, count(students) AS total_students
@@ -78,10 +74,10 @@ module.exports = {
                 education_level=($4),
                 class_type=($5),
                 subjects_taught=($6)
-            WHERE id = $7
-       `
+                WHERE id = $7
+        `
 
-       const values = [
+        const values = [
             data.avatar_url,
             data.name,
             date(data.birth_date).iso,
@@ -89,20 +85,19 @@ module.exports = {
             data.class_type,
             data.subjects_taught,
             data.id
-       ]
+        ]
 
-       db.query(query, values, function(err, results) {
-           if (err) throw `Database Error! ${err}`
+        db.query(query, values, function(err, results) {
+            if (err) throw `Database Error! ${err}`
 
-           callback()
-       })
-
+            callback()
+        })
     },
     delete(id, callback) {
         db.query(`DELETE FROM teachers WHERE id = $1`, [id], function(err, results) {
             if (err) throw `Database Error! ${err}`
 
-            return callback()
+            callback()
         })
     }
 }
